@@ -7,32 +7,58 @@ using UnityEngine.UI;
 public class Coroutine : MonoBehaviour
 {
     public TextAsset Question;
+    public TextAsset Answer;
     public string[] questions;
+    public string[] answers;
     public Text textQuestion;
-    // Start is called before the first frame update
+    public Text textAnswer;
+    public InputField answerField;
+
+    public bool flag;
+
     void Start()
     {
         questions = Question.text.Split(',') ;
+        answers = Answer.text.Split(',') ;
         StartCoroutine(Flow());
     }
 
     IEnumerator Flow()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
         for (int i = 0; i < 100; i++)
         {
             textQuestion.text = "答えを入力して「答える」を押そう！";
         }
-        yield return new WaitForSeconds(1.5f);
-        for (int i = 0; i < 100; i++)
+        while (flag == false)
         {
-            textQuestion.text = questions[0];
+            yield return new WaitForSeconds(3f);
+            for (int i = 0; i < 100; i++)
+            {
+                textQuestion.text = questions[0];
+                yield return new WaitForSeconds(3f);
+            }
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void QuizAnswer()
+    {
+        if (answerField.text == "赤")
+        {
+            textAnswer.text = "正解！";
+            flag = true;
+            answerField.text = "";
+        }
+        else
+        {
+            textAnswer.text = "不正解！";
+            flag = true;
+            answerField.text = "";
+        }
     }
 }
