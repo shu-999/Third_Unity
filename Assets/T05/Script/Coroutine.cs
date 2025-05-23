@@ -14,6 +14,9 @@ public class Coroutine : MonoBehaviour
     public Text textAnswer;
     public InputField answerField;
 
+    public int quizNum;
+    public int quizMaxNum = 4;
+    public int count = 0;
     public bool flag;
 
     void Start()
@@ -25,40 +28,43 @@ public class Coroutine : MonoBehaviour
 
     IEnumerator Flow()
     {
-        yield return new WaitForSeconds(3f);
-        for (int i = 0; i < 100; i++)
-        {
-            textQuestion.text = "答えを入力して「答える」を押そう！";
-        }
-        while (flag == false)
-        {
-            yield return new WaitForSeconds(3f);
-            for (int i = 0; i < 100; i++)
-            {
-                textQuestion.text = questions[0];
-                yield return new WaitForSeconds(3f);
-            }
-        }
-    }
+        yield return new WaitForSeconds(1.5f);
+        textQuestion.text = "答えを入力して「答える」を押そう！";
+        yield return new WaitForSeconds(1.5f);
 
-    void Update()
-    {
-        
+        if (quizNum < quizMaxNum && quizNum < questions.Length)
+        {
+            textQuestion.text = questions[quizNum];
+        }
+        yield return null; 
     }
 
     public void QuizAnswer()
     {
-        if (answerField.text == "赤")
+        if (flag) return;
+
+        if (answerField.text.Trim() == answers[quizNum].Trim())
         {
             textAnswer.text = "正解！";
-            flag = true;
             answerField.text = "";
+            quizNum++;
+            count++;
         }
         else
         {
             textAnswer.text = "不正解！";
-            flag = true;
             answerField.text = "";
+            quizNum++;
+        }
+        if (quizNum >= quizMaxNum || quizNum >= questions.Length)
+        {
+            textAnswer.text = "";
+            textQuestion.text = "結果は" + count.ToString() + "/" + quizMaxNum.ToString();
+            flag = true;
+        }
+        else
+        {
+            textQuestion.text = questions[quizNum];
         }
     }
 }

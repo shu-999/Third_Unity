@@ -247,6 +247,9 @@ MonoBehaviour:
   textQuestion: {fileID: 1123366531}
   textAnswer: {fileID: 1971539132}
   answerField: {fileID: 780585162}
+  quizNum: 0
+  quizMaxNum: 4
+  count: 0
   flag: 0
 --- !u!1 &741661476
 GameObject:
@@ -577,7 +580,7 @@ GameObject:
   - component: {fileID: 1123366532}
   - component: {fileID: 1123366531}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -735,7 +738,7 @@ GameObject:
   - component: {fileID: 1971539133}
   - component: {fileID: 1971539132}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Answer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
