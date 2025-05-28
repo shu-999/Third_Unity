@@ -5,6 +5,8 @@ using UnityEngine;
 public class AddMap : MonoBehaviour
 {
     public List<int> intList;
+    public GameObject obj;
+    public Transform playerPos;
     void Start()
     {
         
@@ -17,8 +19,9 @@ public class AddMap : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.transform.parent.name == "Player")
         {
+            Instantiate(obj,transform.position,Quaternion.identity);
             intList.Add(1);
         }
     }
