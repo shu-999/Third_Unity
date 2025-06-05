@@ -9,7 +9,7 @@ public class Player_07 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class Player_07 : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Rotate(0f,90f,0);
+            transform.Rotate(0f, 90f, 0);
         }
     }
 }
