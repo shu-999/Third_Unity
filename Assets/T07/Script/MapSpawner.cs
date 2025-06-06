@@ -13,18 +13,17 @@ public class MapSpawner : MonoBehaviour
     {
         if (other.name == "Sphere")
         {
+            spawnPoint = other.transform;
             SpawnRandomMap();
         }
     }
 
     void SpawnRandomMap()
     {
-        // Vector3 spawnPos = spawnPoint.position + spawnPoint.forward * distance;
-        spawnPoint.position += new Vector3(0, 0, distance);
-        Vector3 spawnPos = spawnPoint.position;
+        Vector3 spawnPos = spawnPoint.position + spawnPoint.forward * distance;
 
         int randomIndex = Random.Range(0, mapPrefabs.Length); // 0〜2の中でランダム
-        GameObject map = Instantiate(mapPrefabs[randomIndex], spawnPos, Quaternion.identity);
+        GameObject map = Instantiate(mapPrefabs[randomIndex], spawnPos, spawnPoint.rotation);
         spawnedMaps.Add(map);
 
         Debug.Log(spawnPoint.position);
